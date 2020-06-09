@@ -52,7 +52,7 @@ class PropertiesController < ApplicationController
     end
   end
 
-  def get_geo_locations
+  def geo_location_item
     @geo_location = @property.geo_locations.find(property_id: @property.id)
     if @geo_location
       render json: @geo_location
@@ -70,7 +70,7 @@ class PropertiesController < ApplicationController
     end
   end
 
-  def get_favourites
+  def favourites
     @properties = current_user.favourites.all.includes(:property)
     if @properties
       render json: @properties

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :properties
   put 'add_geo_location', to: 'properties#add_geo_location'
-  get 'geo_location', to: 'properties#get_geo_locations'
+  get 'geo_location', to: 'properties#geo_location_item'
   put 'add_favourites', to: 'properties#add_favourites'
-  get 'my_favourites', to: 'properties#get_favourites'
+  get 'my_favourites', to: 'properties#favourites'
 end
