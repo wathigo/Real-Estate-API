@@ -1,6 +1,6 @@
 class PropertiesController < ApplicationController
   before_action :set_property, only: %i[show update destroy add_geo_location]
-  skip_before_action :authenticate_request, only: %i[ index ]
+  skip_before_action :authenticate_request, only: %i[index]
 
   # GET /properties
   def index
@@ -47,36 +47,36 @@ class PropertiesController < ApplicationController
     @geo_location = @property.geo_locations.build(latt: params[:latt], long: params[:long])
     if @geo_location.save
       render json: @geo_location
-    else 
-      render json: {status: 404, message: 'Record not found'}
-    end 
+    else
+      render json: { status: 404, message: 'Record not found' }
+    end
   end
 
   def get_geo_locations
     @geo_location = @property.geo_locations.find(property_id: @property.id)
-    if @geo_location 
+    if @geo_location
       render json: @geo_location
-    else 
-      render json: {status: 404, message: 'Record not Found'}
+    else
+      render json: { status: 404, message: 'Record not Found' }
     end
   end
 
   def add_favourites
     @favourite = current_user.favourites.build(user_id: current_user.id)
-    if @favourite.save 
+    if @favourite.save
       render json: @favourite
-    else 
-      render json: {status: 500, message: 'Something went wrong'}
-    end 
-  end 
+    else
+      render json: { status: 500, message: 'Something went wrong' }
+    end
+  end
 
   def get_favourites
-    @properties = current_user.favourites.all.includes(:property) 
+    @properties = current_user.favourites.all.includes(:property)
     if @properties
       render json: @properties
-    else 
-      render json: {status: 404, message: 'No favourites for you! Add some.'}
-    end 
+    else
+      render json: { status: 404, message: 'No favourites for you! Add some.' }
+    end
   end
 
   private

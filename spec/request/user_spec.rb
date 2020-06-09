@@ -11,7 +11,7 @@ RSpec.describe 'Category API', type: :request do
     let(:valid_attributes) { { user: { name: Faker::Name.name, email: Faker::Internet.email, password: 'foobar' } } }
 
     context 'when the request is valid' do
-      before { post '/auth/signup', params: valid_attributes}
+      before { post '/auth/signup', params: valid_attributes }
 
       it 'creates a user' do
         expect(json['email']).to eq(valid_attributes[:user][:email])
@@ -23,7 +23,7 @@ RSpec.describe 'Category API', type: :request do
     end
 
     context 'when the request is invalid' do
-      before { post '/auth/signup', params: { user: { name: '', email: Faker::Internet.email, password: 'foobar' }}}
+      before { post '/auth/signup', params: { user: { name: '', email: Faker::Internet.email, password: 'foobar' } } }
 
       it 'returns status code 422' do
         expect(json['status']).to eq(422)
@@ -31,8 +31,8 @@ RSpec.describe 'Category API', type: :request do
 
       it 'returns a validation failure message' do
         expect(json['error'])
-          .to match({"name"=>["can't be blank"]})
+          .to match({ "name" => ["can't be blank"] })
       end
     end
-  end  
+  end
 end
