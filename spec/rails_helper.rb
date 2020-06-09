@@ -54,6 +54,7 @@ RSpec.configure do |config|
   # instead of true.
 
   config.include ControllerSpecHelper
+  config.include RequestSpecHelper
 
   config.use_transactional_fixtures = true
 
