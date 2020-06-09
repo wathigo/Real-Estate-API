@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 RSpec.describe AuthorizeApiRequest do
@@ -24,7 +22,7 @@ RSpec.describe AuthorizeApiRequest do
     end
 
     # returns error message when invalid request
-    context 'when invalid request' do
+    context 'when invalid request' do # rubocop:disable Metrics/BlockLength:
       context 'when missing token' do
         it 'raises a MissingToken error' do
           response = invalid_request_obj.call

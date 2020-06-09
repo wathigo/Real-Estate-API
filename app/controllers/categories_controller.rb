@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:show, :update, :destroy]
+  before_action :set_category, only: %i[show update destroy]
 
   # GET /categories
   def index
@@ -13,7 +13,7 @@ class CategoriesController < ApplicationController
     if @category
       render json: @category
     else
-      render json: { status: 404, Message: "Record not Found!" }
+      render json: { status: 404, Message: 'Record not Found!' }
     end
   end
 

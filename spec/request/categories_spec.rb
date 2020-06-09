@@ -45,7 +45,7 @@ RSpec.describe 'Category API', type: :request do
       end
 
       it 'returns a not found message' do
-        expect(json['Message']).to match("Record not Found!")
+        expect(json['Message']).to match('Record not Found!')
       end
     end
   end

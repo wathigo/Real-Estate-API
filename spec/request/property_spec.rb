@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 RSpec.describe 'Property API', type: :request do
@@ -61,7 +59,7 @@ RSpec.describe 'Property API', type: :request do
     let(:valid_attributes) { FactoryBot.attributes_for(:property) }
 
     context 'when the request is valid' do
-      before {
+      before { # rubocop:disable Style/BlockDelimiters
         valid_attributes[:category_id] = category_id
         post '/properties', params: { property: valid_attributes }, headers: headers_without_content
       }
@@ -83,8 +81,7 @@ RSpec.describe 'Property API', type: :request do
       end
 
       it 'returns a validation failure message' do
-        expect(response.body)
-          .to match("{\"category\":[\"must exist\"],\"address\":[\"can't be blank\"],\"description\":[\"can't be blank\"],\"price\":[\"can't be blank\"]}")
+        expect(response.body).to match("{\"category\":[\"must exist\"],\"address\":[\"can't be blank\"],\"description\":[\"can't be blank\"],\"price\":[\"can't be blank\"]}") # rubocop:disable Layout/LineLength
       end
     end
   end

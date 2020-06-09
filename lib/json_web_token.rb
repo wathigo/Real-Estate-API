@@ -9,7 +9,7 @@ class JsonWebToken
     def decode(token)
       body = JWT.decode(token, SECRET)[0]
       HashWithIndifferentAccess.new body
-    rescue
+    rescue # rubocop:disable Style/RescueStandardError
       nil
     end
   end

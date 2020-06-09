@@ -1,5 +1,5 @@
 class PropertiesController < ApplicationController
-  before_action :set_property, only: [:show, :update, :destroy]
+  before_action :set_property, only: %i[show update destroy]
 
   # GET /properties
   def index
@@ -13,7 +13,7 @@ class PropertiesController < ApplicationController
     if @property
       render json: @property
     else
-      render json: { status: 404, Message: "Record not Found!" }
+      render json: { status: 404, Message: 'Record not Found!' }
     end
   end
 

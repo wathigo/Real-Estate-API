@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 RSpec.describe AuthenticateUser do
@@ -21,7 +19,7 @@ RSpec.describe AuthenticateUser do
     context 'when invalid credentials' do
       it 'raises an authentication error' do
         response = invalid_auth_obj.call
-        expect (response.errors).should be_an_instance_of(SimpleCommand::Errors)
+        expect response.errors.should be_an_instance_of(SimpleCommand::Errors)
       end
     end
   end
