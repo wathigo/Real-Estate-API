@@ -49,9 +49,9 @@ RSpec.describe AuthorizeApiRequest do
 
         it 'raises ExceptionHandler::ExpiredSignature error' do
           expect request_obj.call.errors
-                            .should be_an_instance_of(
-                              SimpleCommand::Errors
-                            )
+            .should be_an_instance_of(
+              SimpleCommand::Errors
+            )
         end
       end
 
@@ -61,9 +61,9 @@ RSpec.describe AuthorizeApiRequest do
 
         it 'handles JWT::DecodeError' do
           expect invalid_request_obj.call.errors
-                                    .should be_an_instance_of(
-                                      SimpleCommand::Errors
-                                    )
+            .should be_an_instance_of(
+              SimpleCommand::Errors
+            )
         end
       end
     end

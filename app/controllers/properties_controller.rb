@@ -1,5 +1,5 @@
 class PropertiesController < ApplicationController
-    before_action :set_property, only: [:show, :update, :destroy]
+  before_action :set_property, only: [:show, :update, :destroy]
 
   # GET /properties
   def index
@@ -12,8 +12,8 @@ class PropertiesController < ApplicationController
   def show
     if @property
       render json: @property
-    else 
-      render json: {status: 404, Message: "Record not Found!"}
+    else
+      render json: { status: 404, Message: "Record not Found!" }
     end
   end
 
@@ -43,13 +43,14 @@ class PropertiesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_property
-      @property = Property.find_by_id(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def property_params
-      params.require(:property).permit(:address, :description, :price, :category_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_property
+    @property = Property.find_by_id(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def property_params
+    params.require(:property).permit(:address, :description, :price, :category_id)
+  end
 end

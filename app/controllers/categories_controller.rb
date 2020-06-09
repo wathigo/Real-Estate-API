@@ -12,8 +12,8 @@ class CategoriesController < ApplicationController
   def show
     if @category
       render json: @category
-    else 
-      render json: {status: 404, Message: "Record not Found!"}
+    else
+      render json: { status: 404, Message: "Record not Found!" }
     end
   end
 
@@ -43,13 +43,14 @@ class CategoriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_category
-      @category = Category.find_by_id(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def category_params
-      params.require(:category).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_category
+    @category = Category.find_by_id(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def category_params
+    params.require(:category).permit(:name)
+  end
 end

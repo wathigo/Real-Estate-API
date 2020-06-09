@@ -61,10 +61,10 @@ RSpec.describe 'Property API', type: :request do
     let(:valid_attributes) { FactoryBot.attributes_for(:property) }
 
     context 'when the request is valid' do
-      before { 
-          valid_attributes[:category_id] = category_id
-          post '/properties', params: { property: valid_attributes }, headers: headers_without_content 
-        }
+      before {
+        valid_attributes[:category_id] = category_id
+        post '/properties', params: { property: valid_attributes }, headers: headers_without_content
+      }
 
       it 'creates a property' do
         expect(json['address']).to eq(valid_attributes[:address])

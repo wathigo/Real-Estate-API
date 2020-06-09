@@ -10,7 +10,7 @@ RSpec.describe 'Category API', type: :request do
   let(:headers_without_content) { valid_headers_without_content_type }
 
   describe 'GET /categories' do
-    before { get '/categories', params: {}, headers: headers}
+    before { get '/categories', params: {}, headers: headers }
 
     it 'returns categories' do
       FactoryBot.create(:category)
