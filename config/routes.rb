@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
-  resources :categories
-  resources :properties
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   post 'authenticate', to: 'authentication#authenticate'
+  post 'auth/signup', to: 'users#create'
+
+  resources :categories
+  resources :properties
+  put 'add_geo_location', to: 'properties#add_geo_location'
+  get 'geo_location', to: 'properties#get_geo_locations'
+  put 'add_favourites', to: 'properties#add_favourites'
+  get 'my_favourites', to: 'properties#get_favourites'
 end
