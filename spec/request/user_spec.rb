@@ -31,7 +31,7 @@ RSpec.describe 'Category API', type: :request do
 
       it 'returns a validation failure message' do
         expect(json['error'])
-          .to match({ 'name' => ["can't be blank"] }) # rubocop:disable Style/StringLiterals
+          .to match({ 'name' => ["can't be blank"] })
       end
     end
   end
