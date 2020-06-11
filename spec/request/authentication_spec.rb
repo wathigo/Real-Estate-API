@@ -6,9 +6,8 @@ RSpec.describe 'Authentication API', type: :request do
 
   # Test suite for POST /users
   describe 'POST /authenticate' do
-
     context 'when the request is valid' do
-      before { post '/authenticate', params: { email: user.email, password: user.password} }
+      before { post '/authenticate', params: { email: user.email, password: user.password } }
 
       it 'Returns auth token' do
         expect(json['auth_token']).not_to be_nil
@@ -20,7 +19,7 @@ RSpec.describe 'Authentication API', type: :request do
     end
 
     context 'when the request is invalid' do
-      before { post '/authenticate', params: { email: "unknown@gmail.com", password: "foobar" }}
+      before { post '/authenticate', params: { email: "unknown@gmail.com", password: "foobar" } }
 
       it 'returns status code 422' do
         expect(response).to have_http_status(401)

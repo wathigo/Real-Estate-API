@@ -9,11 +9,11 @@ RSpec.describe 'Property API', type: :request do
   let(:property_id) { property.id }
   let(:user_id) { user.id }
   let(:headers) { valid_headers }
-  let(:headers_without_content) { valid_headers_without_content_type } 
+  let(:headers_without_content) { valid_headers_without_content_type }
 
-  before do 
-    FactoryBot.create(:favourite, property_id: property.id, user_id: user.id) 
-    FactoryBot.create(:geo_location, property_id: property.id) 
+  before do
+    FactoryBot.create(:favourite, property_id: property.id, user_id: user.id)
+    FactoryBot.create(:geo_location, property_id: property.id)
   end
 
   describe 'GET /properties' do
@@ -117,96 +117,90 @@ RSpec.describe 'Property API', type: :request do
   end
 
   # Test suite for Put /add_geo_location
-  describe 'PUT /add_geo_location' do 
+  describe 'PUT /add_geo_location' do
     before { put '/add_geo_location', params: { id: property_id, latt: 86248, long: 824628 }, headers: headers_without_content }
 
-    context "When property record exists" do 
-      it 'Returns geolocation record' do 
+    context "When property record exists" do
+      it 'Returns geolocation record' do
         expect(json['property_id']).to eq(property_id)
-      end 
+      end
 
-      it 'Returns a HTTP status of 200' do 
+      it 'Returns a HTTP status of 200' do
         expect(response).to have_http_status(200)
       end
-    end 
+    end
 
-    context "When Property record does not exist" do 
+    context "When Property record does not exist" do
       let(:property_id) { 200 }
-      it 'Returns Must contain property' do 
+      it 'Returns Must contain property' do
         expect(json['error']).to eq("Property not found")
-      end 
+      end
 
-      it 'Returns a http status of 404' do 
+      it 'Returns a http status of 404' do
         expect(response).to have_http_status(404)
       end
     end
   end
 
-  describe 'get /geo_location' do 
-    
-    before { get '/geo_location', params: {id: property_id}, headers: headers }
+  describe 'get /geo_location' do
+    before { get '/geo_location', params: { id: property_id }, headers: headers }
 
-    context 'When valid parameters have been passed' do 
-      it 'Returns a property record' do       
+    context 'When valid parameters have been passed' do
+      it 'Returns a property record' do
         expect(json['property_id']).to eq(property_id)
-      end 
+      end
 
-      it 'Returns a status of 200' do 
+      it 'Returns a status of 200' do
         expect(response).to have_http_status(200)
       end
     end
 
-    context 'When geo does not exists' do 
+    context 'When geo does not exists' do
       let(:property_id) { 700 }
-      it 'Return an error message' do 
+      it 'Return an error message' do
         expect(json['error']).to eq('Property not Found')
-      end 
-
-      it 'Returns a status of 404' do 
-        expect(response).to have_http_status(404)
       end
-    end 
-  end
 
-  describe 'put /add_favourites' do 
-    before { put '/add_favourites', params: { id: property_id }, headers: headers_without_content}
-
-    context 'When property exists' do 
-      it 'Returns a favorite record' do 
-        expect(json['property_id']).to eq(property_id)
-      end 
-
-      it 'Returns a status of 200' do 
-        expect(response).to have_http_status(200) 
-      end 
-    end 
-
-    context 'When property does not exist' do 
-      let(:property_id) {82478}
-      it 'Returns a error message' do 
-        expect(json['error']).to eq('Property not Found')
-      end 
-
-      it 'Returns a status of 404' do 
+      it 'Returns a status of 404' do
         expect(response).to have_http_status(404)
       end
     end
   end
 
-  describe 'get /my_favourites' do 
-    before { get '/my_favourites', params: { id: property_id }, headers: headers}
-     
-    it "Returns an array of current_user's favourite properties" do 
-      expect(json).to be_an_instance_of(Array)
-    end 
+  describe 'put /add_favourites' do
+    before { put '/add_favourites', params: { id: property_id }, headers: headers_without_content }
 
-    it 'Returns a status of 200' do 
+    context 'When property exists' do
+      it 'Returns a favorite record' do
+        expect(json['property_id']).to eq(property_id)
+      end
+
+      it 'Returns a status of 200' do
+        expect(response).to have_http_status(200)
+      end
+    end
+
+    context 'When property does not exist' do
+      let(:property_id) { 82478 }
+      it 'Returns a error message' do
+        expect(json['error']).to eq('Property not Found')
+      end
+
+      it 'Returns a status of 404' do
+        expect(response).to have_http_status(404)
+      end
+    end
+  end
+
+  describe 'get /my_favourites' do
+    before { get '/my_favourites', params: { id: property_id }, headers: headers }
+
+    it "Returns an array of current_user's favourite properties" do
+      expect(json).to be_an_instance_of(Array)
+    end
+
+    it 'Returns a status of 200' do
       expect(response).to have_http_status(200)
     end
   end
-      
-
-    
-
-
 end

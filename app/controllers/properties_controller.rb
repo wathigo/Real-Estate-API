@@ -47,23 +47,23 @@ class PropertiesController < ApplicationController
     if @property
       @geo_location = GeoLocation.new(latt: params[:latt], long: params[:long], property_id: @property.id)
       if @geo_location.save
-        render json: @geo_location 
-      else 
+        render json: @geo_location
+      else
         render json: { error: @geo_location.errors }, status: :not_found
       end
-    else 
-      render json: { error: 'Property not found'}, status: :not_found
+    else
+      render json: { error: 'Property not found' }, status: :not_found
     end
   end
 
   def geo_location_item
-    if @property 
+    if @property
       @geo_location = GeoLocation.where(property_id: @property.id).take
       if @geo_location
-        render json: @geo_location 
-      else 
+        render json: @geo_location
+      else
         render json: { error: 'Location not Found' }, status: :not_found
-      end  
+      end
     else
       render json: { error: 'Property not Found' }, status: :not_found
     end
@@ -74,9 +74,9 @@ class PropertiesController < ApplicationController
       @favourite = current_user.favourites.new(property_id: @property.id)
       if @favourite.save
         render json: @favourite
-      else 
+      else
         render json: { error: @favourite.errors }, status: :not_found
-      end 
+      end
     else
       render json: { error: "Property not Found" }, status: :not_found
     end
