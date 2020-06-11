@@ -1,19 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe 'Category API', type: :request do
+RSpec.describe 'Authentication API', type: :request do
   # initialize test data
-  let(:category) { FactoryBot.create(:category) }
   let(:user) { FactoryBot.create(:user) }
 
   # Test suite for POST /users
-  describe 'POST /auth/signup' do
-    # valid payload
-    let(:valid_attributes) { { user: { name: Faker::Name.name, email: Faker::Internet.email, password: 'foobar' } } }
+  describe 'POST /authenticate' do
 
     context 'when the request is valid' do
-      before { post '/auth/signup', params: valid_attributes }
+      before { post '/authenticate', params: { email: user.email, password: user.password} }
 
-      it 'creates a user' do
+      it 'Returns auth token' do
         expect(json['auth_token']).not_to be_nil
       end
 
@@ -23,7 +20,7 @@ RSpec.describe 'Category API', type: :request do
     end
 
     context 'when the request is invalid' do
-      before { post '/auth/signup', params: { user: { name: '', email: Faker::Internet.email, password: 'foobar' } } }
+      before { post '/authenticate', params: { email: "unknown@gmail.com", password: "foobar" }}
 
       it 'returns status code 422' do
         expect(response).to have_http_status(401)
@@ -31,7 +28,7 @@ RSpec.describe 'Category API', type: :request do
 
       it 'returns a validation failure message' do
         expect(json['error'])
-          .to match({ 'name' => ["can't be blank"] })
+          .to match({ "user_authentication" => "invalid credentials" })
       end
     end
   end
