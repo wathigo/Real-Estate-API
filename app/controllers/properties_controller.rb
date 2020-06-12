@@ -1,5 +1,5 @@
 class PropertiesController < ApplicationController
-  before_action :set_property, only: %i[show update destroy add_geo_location]
+  before_action :set_property, only: %i[show update destroy add_geo_location geo_location_item add_favourites favourites] # rubocop:disable Layout/LineLength
   skip_before_action :authenticate_request, only: %i[index]
 
   # GET /properties
@@ -44,29 +44,41 @@ class PropertiesController < ApplicationController
   end
 
   def add_geo_location
-    @geo_location = @property.geo_locations.build(latt: params[:latt], long: params[:long])
-    if @geo_location.save
-      render json: @geo_location
+    if @property
+      @geo_location = GeoLocation.new(latt: params[:latt], long: params[:long], property_id: @property.id)
+      if @geo_location.save
+        render json: @geo_location
+      else
+        render json: { error: @geo_location.errors }, status: :not_found
+      end
     else
-      render json: { status: 404, message: 'Record not found' }
+      render json: { error: 'Property not found' }, status: :not_found
     end
   end
 
   def geo_location_item
-    @geo_location = @property.geo_locations.find(property_id: @property.id)
-    if @geo_location
-      render json: @geo_location
+    if @property
+      @geo_location = GeoLocation.where(property_id: @property.id).take
+      if @geo_location
+        render json: @geo_location
+      else
+        render json: { error: 'Location not Found' }, status: :not_found
+      end
     else
-      render json: { status: 404, message: 'Record not Found' }
+      render json: { error: 'Property not Found' }, status: :not_found
     end
   end
 
   def add_favourites
-    @favourite = current_user.favourites.build(user_id: current_user.id)
-    if @favourite.save
-      render json: @favourite
+    if @property
+      @favourite = current_user.favourites.new(property_id: @property.id)
+      if @favourite.save
+        render json: @favourite
+      else
+        render json: { error: @favourite.errors }, status: :not_found
+      end
     else
-      render json: { status: 500, message: 'Something went wrong' }
+      render json: { error: 'Property not Found' }, status: :not_found
     end
   end
 
@@ -75,7 +87,7 @@ class PropertiesController < ApplicationController
     if @properties
       render json: @properties
     else
-      render json: { status: 404, message: 'No favourites for you! Add some.' }
+      render json: { error: 'No favourites for you! Add some.' }, status: :not_found
     end
   end
 
