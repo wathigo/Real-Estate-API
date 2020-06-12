@@ -118,9 +118,9 @@ RSpec.describe 'Property API', type: :request do
 
   # Test suite for Put /add_geo_location
   describe 'PUT /add_geo_location' do
-    before { put '/add_geo_location', params: { id: property_id, latt: 86248, long: 824628 }, headers: headers_without_content }
+    before { put '/add_geo_location', params: { id: property_id, latt: 86_248, long: 824_628 }, headers: headers_without_content } # rubocop:disable Layout/LineLength
 
-    context "When property record exists" do
+    context 'When property record exists' do
       it 'Returns geolocation record' do
         expect(json['property_id']).to eq(property_id)
       end
@@ -133,7 +133,7 @@ RSpec.describe 'Property API', type: :request do
     context "When Property record does not exist" do
       let(:property_id) { 200 }
       it 'Returns Must contain property' do
-        expect(json['error']).to eq("Property not found")
+        expect(json['error']).to eq('Property not found')
       end
 
       it 'Returns a http status of 404' do
@@ -181,7 +181,7 @@ RSpec.describe 'Property API', type: :request do
     end
 
     context 'When property does not exist' do
-      let(:property_id) { 82478 }
+      let(:property_id) { 82_478 }
       it 'Returns a error message' do
         expect(json['error']).to eq('Property not Found')
       end

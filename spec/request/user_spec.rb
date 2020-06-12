@@ -50,7 +50,7 @@ RSpec.describe 'Category API', type: :request do
     context 'When user has not been authenticated' do
       let(:headers) { invalid_headers }
       it 'Returns an error message' do
-        expect(json['error']).to eq("Not Authorized")
+        expect(json['error']).to eq('Not Authorized')
       end
 
       it 'Returns a status of 401' do

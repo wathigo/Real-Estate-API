@@ -19,7 +19,7 @@ RSpec.describe 'Authentication API', type: :request do
     end
 
     context 'when the request is invalid' do
-      before { post '/authenticate', params: { email: "unknown@gmail.com", password: "foobar" } }
+      before { post '/authenticate', params: { email: 'unknown@gmail.com', password: 'foobar' } }
 
       it 'returns status code 422' do
         expect(response).to have_http_status(401)
@@ -27,7 +27,7 @@ RSpec.describe 'Authentication API', type: :request do
 
       it 'returns a validation failure message' do
         expect(json['error'])
-          .to match({ "user_authentication" => "invalid credentials" })
+          .to match({ 'user_authentication' => 'invalid credentials' })
       end
     end
   end

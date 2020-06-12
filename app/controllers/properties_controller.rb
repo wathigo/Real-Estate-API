@@ -1,5 +1,5 @@
 class PropertiesController < ApplicationController
-  before_action :set_property, only: %i[show update destroy add_geo_location geo_location_item add_favourites favourites]
+  before_action :set_property, only: %i[show update destroy add_geo_location geo_location_item add_favourites favourites] # rubocop:disable Layout/LineLength
   skip_before_action :authenticate_request, only: %i[index]
 
   # GET /properties
@@ -78,7 +78,7 @@ class PropertiesController < ApplicationController
         render json: { error: @favourite.errors }, status: :not_found
       end
     else
-      render json: { error: "Property not Found" }, status: :not_found
+      render json: { error: 'Property not Found' }, status: :not_found
     end
   end
 
