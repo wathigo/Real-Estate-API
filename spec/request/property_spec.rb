@@ -130,7 +130,7 @@ RSpec.describe 'Property API', type: :request do
       end
     end
 
-    context "When Property record does not exist" do
+    context 'When Property record does not exist' do
       let(:property_id) { 200 }
       it 'Returns Must contain property' do
         expect(json['error']).to eq('Property not found')
