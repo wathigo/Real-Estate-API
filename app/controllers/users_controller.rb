@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     user = User.create(user_params)
     if user.valid?
       auth_token = AuthenticateUser.new(user.email, user.password).call 
-      render json: { auth_token: auth_token }
+      render json: { auth_token: auth_token.result, current_user: current_user }
     else
       render json: { error: user.errors }, status: :unauthorized
     end
