@@ -29,5 +29,5 @@ end
 properties = Property.all 
 
 properties.each do |property|
-GeoLocation.create(property_id: property.id, latt: Faker::Address.latitude, long: Faker::Address.longitude)
+    GeoLocation.create(property_id: property.id, latt: Faker::Address.latitude, long: Faker::Address.longitude)
 end
