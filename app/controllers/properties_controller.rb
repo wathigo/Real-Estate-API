@@ -12,7 +12,7 @@ class PropertiesController < ApplicationController
   # GET /properties/1
   def show
     if @property
-      render json: @property
+      render json: { property: @property, user: current_user }
     else
       render json: { status: 404, Message: 'Record not Found!' }
     end
@@ -73,7 +73,7 @@ class PropertiesController < ApplicationController
     if @property
       @favourite = current_user.favourites.new(property_id: @property.id)
       if @favourite.save
-        render json: @favourite
+        render json: { favourite: @favourite, user: current_user }
       else
         render json: { error: @favourite.errors }, status: :not_found
       end

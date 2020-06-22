@@ -35,7 +35,7 @@ RSpec.describe 'Property API', type: :request do
     context 'when the record exists' do
       it 'returns the property' do
         expect(json).not_to be_empty
-        expect(json['id']).to eq(property_id)
+        expect(json['property']['id']).to eq(property_id)
       end
 
       it 'returns status code 200' do
@@ -172,7 +172,7 @@ RSpec.describe 'Property API', type: :request do
 
     context 'When property exists' do
       it 'Returns a favorite record' do
-        expect(json['property_id']).to eq(property_id)
+        expect(json['favourite']['property_id']).to eq(property_id)
       end
 
       it 'Returns a status of 200' do
