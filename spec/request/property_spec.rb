@@ -196,7 +196,7 @@ RSpec.describe 'Property API', type: :request do
     before { get '/my_favourites', params: { id: property_id }, headers: headers }
 
     it "Returns an array of current_user's favourite properties" do
-      expect(json).to be_an_instance_of(Array)
+      expect(json['properties']).to be_an_instance_of(Array)
     end
 
     it 'Returns a status of 200' do

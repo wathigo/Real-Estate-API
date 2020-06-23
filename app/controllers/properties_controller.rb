@@ -85,7 +85,7 @@ class PropertiesController < ApplicationController
   def favourites
     @properties = current_user.favourites.all.includes(:property)
     if @properties
-      render json: @properties
+      render json: { properties: @properties, user: current_user }
     else
       render json: { error: 'No favourites for you! Add some.' }, status: :not_found
     end
