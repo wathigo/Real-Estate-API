@@ -5,8 +5,10 @@ RSpec.describe 'Property API', type: :request do
   let(:category) { FactoryBot.create(:category) }
   let(:category_id) { category.id }
   let(:property) { FactoryBot.create(:property, category_id: category_id) }
+  let(:property1) { FactoryBot.create(:property, category_id: category_id) }
   let(:user) { FactoryBot.create(:user) }
   let(:property_id) { property.id }
+  let(:property1_id) { property1.id }
   let(:user_id) { user.id }
   let(:headers) { valid_headers }
   let(:headers_without_content) { valid_headers_without_content_type }
@@ -168,11 +170,11 @@ RSpec.describe 'Property API', type: :request do
   end
 
   describe 'put /add_favourites' do
-    before { put '/add_favourites', params: { id: property_id }, headers: headers_without_content }
+    before { put '/add_favourites', params: { id: property1_id }, headers: headers_without_content }
 
     context 'When property exists' do
       it 'Returns a favorite record' do
-        expect(json['favourite']['property_id']).to eq(property_id)
+        expect(json['favourite']['property_id']).to eq(property1_id)
       end
 
       it 'Returns a status of 200' do
@@ -181,7 +183,7 @@ RSpec.describe 'Property API', type: :request do
     end
 
     context 'When property does not exist' do
-      let(:property_id) { 82_478 }
+      let(:property1_id) { 82_478 }
       it 'Returns a error message' do
         expect(json['error']).to eq('Property not Found')
       end
