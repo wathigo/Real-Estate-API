@@ -73,7 +73,9 @@ class PropertiesController < ApplicationController
     if @property
       @favourite = current_user.favourites.new(property_id: @property.id)
       if @favourite.save
-        render json: { favourite: @favourite, user: current_user }
+        @favourites ||= current_user.favourites.all.includes(:property)
+        @properties ||= @favourites.map { |favourite| favourite.property }
+        render json: { favourite: @favourite, user: current_user, favourites: @properties }
       else
         render json: { error: @favourite.errors }, status: :not_found
       end
