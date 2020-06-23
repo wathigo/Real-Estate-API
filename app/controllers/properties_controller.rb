@@ -83,7 +83,8 @@ class PropertiesController < ApplicationController
   end
 
   def favourites
-    @properties = current_user.favourites.all.includes(:property)
+    @favourites = current_user.favourites.all.includes(:property)
+    @properties = @favourites.map { |favourite| favourite.property }
     if @properties
       render json: { properties: @properties, user: current_user }
     else
