@@ -45,6 +45,8 @@ rails start
 
 ## :arrow_forward: Usage
 To use the API visit  https://real-estate-client.netlify.app and make use of the hosted version with seeded data.
+Tools like [postman](https://www.postman.com/) can also be used to test each endpoits.
+The tests also makes sure that each and every endpoint has been tested.
 
 ## :vertical_traffic_light: Testing
 To run the tests:
