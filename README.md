@@ -1,3 +1,67 @@
-# Real Eastate API
+# Real Estate API
 
-Deployment Link: https://fun-real-estate-api.herokuapp.com/
+A rails API application that is consumed by [react-rails-client](https://github.com/wathigo/Real-Estate-Client/blob/property/README.md). 
+
+## :package: Built With
+
+    - Rails
+    - API
+
+## :computer: Getting Started
+
+    To get a local copy up and running follow these simple steps.
+
+## :arrow_heading_down: Install
+
+1) Clone the repository to your local machine
+```sh
+$ git clone https://github.com/wathigo/Real-Estate-API.git
+```
+
+2) cd into the directory
+```sh
+$ cd Real-Estate-API
+```
+
+3) install dependencies 
+```sh
+bundle install
+```
+
+Seed in some data
+```sh
+rails db:seed
+``` 
+
+Start the development server
+```sh
+rails start
+```
+
+## :arrow_forward: Usage
+To use the API visit  https://real-estate-client.netlify.app and make use of the hosted version with seeded data.
+
+## :vertical_traffic_light: Testing
+To run the tests:
+```sh
+bundle exec rspec
+```
+
+
+## :busts_in_silhouette: Authors
+
+👤 **Simon Wathigo**
+
+- Linkedin: [Simon Wathigo](https://www.linkedin.com/in/simon-wathigo/)
+- Github: [@wathigo](https://github.com/wathigo)
+
+## 🤝 Contributing
+
+    Contributions, issues and feature requests are welcome!
+
+Feel free to check the [issues page](../../issues).
+
+## :star2: Show your support
+
+    Give a ⭐️ if you like this project!
+
