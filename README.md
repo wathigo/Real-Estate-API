@@ -28,12 +28,17 @@ $ cd Real-Estate-API
 bundle install
 ```
 
-Seed in some data
+4) Migrate to the database
+```sh
+rails db:migrate
+```
+
+5) Seed in some data
 ```sh
 rails db:seed
 ``` 
 
-Start the development server
+6) Start the development server
 ```sh
 rails start
 ```
