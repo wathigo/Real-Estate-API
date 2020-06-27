@@ -1,6 +1,6 @@
 # Real Estate API
 
-A rails API application that is consumed by [react-rails-client](https://github.com/wathigo/Real-Estate-Client/blob/property/README.md). 
+A rails API application that is consumed by [Real-Estate-Client](https://github.com/wathigo/Real-Estate-Client/blob/property/README.md). 
 
 ## :package: Built With
 
