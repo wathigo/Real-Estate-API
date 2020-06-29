@@ -24,7 +24,7 @@ RSpec.describe 'Category API', type: :request do
     context 'when the request is invalid' do
       before { post '/auth/signup', params: { user: { name: '', email: Faker::Internet.email, password: 'foobar' } } }
 
-      it 'returns status code 422' do
+      it 'returns status code 401' do
         expect(response).to have_http_status(401)
       end
 

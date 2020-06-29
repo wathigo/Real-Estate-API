@@ -25,7 +25,7 @@ RSpec.describe 'Authentication API', type: :request do
     context 'when the request is invalid' do
       before { post '/authenticate', params: { email: 'unknown@gmail.com', password: 'foobar' } }
 
-      it 'returns status code 422' do
+      it 'returns status code 401' do
         expect(response).to have_http_status(401)
       end
 

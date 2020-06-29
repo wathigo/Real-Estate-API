@@ -98,7 +98,7 @@ class PropertiesController < ApplicationController
     @property = Property.find_by_id(params[:id])
   end
 
-  def set_favourite_properties 
+  def set_favourite_properties
     @favourites ||= current_user.favourites.all.includes(:property)
     @properties ||= @favourites.map { |favourite| favourite.property }
   end
