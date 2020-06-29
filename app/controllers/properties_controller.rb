@@ -100,7 +100,7 @@ class PropertiesController < ApplicationController
 
   def favourite_properties
     @favourites ||= current_user.favourites.all.includes(:property)
-    @favourite_properties ||= @favourites.map &:property
+    @favourite_properties ||= @favourites.map(&:property)
   end
 
   # Only allow a trusted parameter "white list" through.
