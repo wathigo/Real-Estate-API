@@ -29,6 +29,9 @@ All of the above endpoints have been tested for the negative and positive scenar
 
     - Rails
     - API
+    - Rpec
+    - JWT
+    - Postgress
 
 ## :computer: Getting Started
 
