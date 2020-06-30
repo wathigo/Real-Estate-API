@@ -1,5 +1,6 @@
 class PropertiesController < ApplicationController
   before_action :set_property, only: %i[show update destroy add_geo_location geo_location_item add_favourites favourites] # rubocop:disable Layout/LineLength
+  before_action :favourite_properties, only: %i[add_favourites favourites]
   skip_before_action :authenticate_request, only: %i[index]
 
   # GET /properties
@@ -12,7 +13,7 @@ class PropertiesController < ApplicationController
   # GET /properties/1
   def show
     if @property
-      render json: @property
+      render json: { property: @property, user: current_user }
     else
       render json: { status: 404, Message: 'Record not Found!' }
     end
@@ -73,7 +74,7 @@ class PropertiesController < ApplicationController
     if @property
       @favourite = current_user.favourites.new(property_id: @property.id)
       if @favourite.save
-        render json: @favourite
+        render json: { favourite: @favourite, user: current_user, favourites: @favourite_properties }
       else
         render json: { error: @favourite.errors }, status: :not_found
       end
@@ -83,9 +84,8 @@ class PropertiesController < ApplicationController
   end
 
   def favourites
-    @properties = current_user.favourites.all.includes(:property)
-    if @properties
-      render json: @properties
+    if @favourite_properties
+      render json: { properties: @favourite_properties, user: current_user }
     else
       render json: { error: 'No favourites for you! Add some.' }, status: :not_found
     end
@@ -96,6 +96,11 @@ class PropertiesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_property
     @property = Property.find_by_id(params[:id])
+  end
+
+  def favourite_properties
+    @favourites ||= current_user.favourites.all.includes(:property)
+    @favourite_properties ||= @favourites.map(&:property)
   end
 
   # Only allow a trusted parameter "white list" through.

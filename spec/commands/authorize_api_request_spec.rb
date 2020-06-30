@@ -26,7 +26,7 @@ RSpec.describe AuthorizeApiRequest do
       context 'when missing token' do
         it 'raises a MissingToken error' do
           response = invalid_request_obj.call
-          expect response.errors.should be_an_instance_of(SimpleCommand::Errors)
+          expect(response.errors).to be_an_instance_of(SimpleCommand::Errors)
         end
       end
 
@@ -46,8 +46,8 @@ RSpec.describe AuthorizeApiRequest do
         subject(:request_obj) { described_class.new(header) }
 
         it 'raises ExceptionHandler::ExpiredSignature error' do
-          expect request_obj.call.errors
-            .should be_an_instance_of(
+          expect(request_obj.call.errors)
+            .to be_an_instance_of(
               SimpleCommand::Errors
             )
         end
@@ -58,8 +58,8 @@ RSpec.describe AuthorizeApiRequest do
         subject(:invalid_request_obj) { described_class.new(header) }
 
         it 'handles JWT::DecodeError' do
-          expect invalid_request_obj.call.errors
-            .should be_an_instance_of(
+          expect(invalid_request_obj.call.errors)
+            .to be_an_instance_of(
               SimpleCommand::Errors
             )
         end

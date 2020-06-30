@@ -13,6 +13,10 @@ RSpec.describe 'Authentication API', type: :request do
         expect(json['auth_token']).not_to be_nil
       end
 
+      it 'Returns current_user' do
+        expect(json['current_user']['email']).to eq(user.email)
+      end
+
       it 'returns status code 200' do
         expect(response).to have_http_status(200)
       end
@@ -21,7 +25,7 @@ RSpec.describe 'Authentication API', type: :request do
     context 'when the request is invalid' do
       before { post '/authenticate', params: { email: 'unknown@gmail.com', password: 'foobar' } }
 
-      it 'returns status code 422' do
+      it 'returns status code 401' do
         expect(response).to have_http_status(401)
       end
 
