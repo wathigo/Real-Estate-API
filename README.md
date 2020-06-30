@@ -1,11 +1,37 @@
-# Real Estate API
+# Real Estate API 
 
-A rails API application that is consumed by [Real-Estate-Client](https://github.com/wathigo/Real-Estate-Client/blob/property/README.md). 
+A rails API application that is consumed by [Real-Estate-Client](https://github.com/wathigo/Real-Estate-Client/blob/property/README.md). The application handled user authentication using [JWT](https://jwt.io/). There are endpoints that require authentication/protected endpoints and those that don't.
+
+Let's start by listing the list of unprotected endpoints:
+* POST /authenticate. The endpoint used to authenticate/log in a user.
+* POST /auth/signup. The endpoint that is used when creating a new user.
+* GET /categories. Endpoint used for getting all the categories.
+* GET /properties. The endpoint used to fetch all the properties.
+* GET /properties/:id. Used to get a specific property record.
+
+All the other endpoint requires the user to be authenticated. They include:
+* GET /user. Endpoint used to retrieve the current user.
+* PATCH /categories/:id. Used to update specific fields of an already existing category record.
+* PUT /categories/:id. Used to update all the fields of an existing category record.
+* DELETE /categories/:id. Used to delete an existing category record.
+* POST /properties. Used to create a new property record.
+* PATCH /properties/:id. Used to update specific fields of an existing property record.
+* PUT /properties/:id. Used to update all the fields of an existing property record.
+* DELETE /properties/:id. Used to delete an existing property record.
+* PUT /add_geo_location. Creates a geo_location record for an existing propery record.
+* GET /geo_location. Fetches the geo_location record for an existing property record.
+* PUT /add_favourites. Creates a favourite record for the current user.
+* GET /my_favourites. Gets all the favourite properties of the current user.
+
+All of the above endpoints have been tested for the negative and positive scenarios.
 
 ## :package: Built With
 
     - Rails
     - API
+    - Rpec
+    - JWT
+    - Postgress
 
 ## :computer: Getting Started
 

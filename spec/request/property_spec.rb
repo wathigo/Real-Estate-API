@@ -103,7 +103,7 @@ RSpec.describe 'Property API', type: :request do
         expect(response.body).not_to be_empty
       end
 
-      it 'returns status code 204' do
+      it 'returns status code 200' do
         expect(response).to have_http_status(200)
       end
     end
