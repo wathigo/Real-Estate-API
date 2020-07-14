@@ -25,6 +25,9 @@ All the other endpoint requires the user to be authenticated. They include:
 
 All of the above endpoints have been tested for the negative and positive scenarios.
 
+## Live Link
+See the all the properites using the unprotected route [here](https://fun-rails-api.herokuapp.com/properties).
+
 ## :package: Built With
 
     - Rails
@@ -73,6 +76,11 @@ rails start
 To use the API visit  https://real-estate-client.netlify.app and make use of the hosted version with seeded data.
 Tools like [postman](https://www.postman.com/) can also be used to test each endpoits.
 The tests also makes sure that each and every endpoint has been tested.
+<p align="center">
+<a href="#">
+   <img src="images/props.png" alt="properties">
+ </a>
+</p>
 
 ## :vertical_traffic_light: Testing
 To run the tests:
