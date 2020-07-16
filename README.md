@@ -89,7 +89,7 @@ bundle exec rspec
 ```
 
 ## ToDo
-Add user priveledges. Create user and admin roles.This is an issue reference [here](../../issues/7).
+Add user priveledges. Create user and admin roles.This is an issue addressed [here](../../issues/7).
 
 ## :busts_in_silhouette: Authors
 
