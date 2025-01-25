@@ -20,6 +20,8 @@ gem 'puma', '~> 4.1'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '~> 1.18', '>= 1.18.3'
 
+gem 'rake', '~> 13.0', '>= 13.0.6'
+
 gem 'mimemagic', github: 'mimemagicrb/mimemagic', ref: '01f92d86d15d85cfd0f20dabd025dcbd36a8a60f'
 
 gem 'bcrypt', '~> 3.1.7'
